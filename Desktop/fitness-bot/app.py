@@ -9,7 +9,6 @@ PHOTO_PATH = "welcome.jpg"
 @app.route('/start', methods=['POST'])
 def handle_start():
     chat_id = request.get_json(force=True)
-
     url = f"https://api.telegram.org/bot{TOKEN}/sendPhoto"
     with open(PHOTO_PATH, 'rb') as photo_file:
         response = requests.post(
@@ -20,16 +19,13 @@ def handle_start():
             },
             files={'photo': photo_file}
         )
-
     return jsonify({"status": response.status_code})
 
 @app.route('/invite', methods=['POST'])
 def handle_invite():
     chat_id = request.get_json(force=True)
-
     invite_link = "https://t.me/+m5vpHkG0q5M4MjFi"
     url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
-
     payload = {
         "chat_id": chat_id,
         "text": "Нажми на кнопку ниже, чтобы перейти в закрытый канал 👇",
@@ -39,7 +35,6 @@ def handle_invite():
             ]]
         }
     }
-
     response = requests.post(url, json=payload)
     return jsonify({"status": response.status_code})
 
@@ -49,4 +44,5 @@ def ping():
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)
+
 
