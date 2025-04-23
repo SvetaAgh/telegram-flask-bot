@@ -46,7 +46,7 @@ def ping():
     return "pong"
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=10000)  # <-- ЭТО ВАЖНО ДЛЯ RENDER
+    app.run(host="0.0.0.0", port=10000)
 
 
 
